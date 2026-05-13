@@ -1,21 +1,28 @@
-import entity.NodoBinSearch;
+import entity.BST;
 
 import java.util.Scanner;
 
-public class MainNodoBinSearch {
+public class MainBST {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        NodoBinSearch nodoBinSearch = new NodoBinSearch();
-        for (int i = 0; i < 10; i++) {
+        BST radice = null;
+        CalcoliBST calcoli = new CalcoliBST();
+        
+        for (int i = 0; i < 6; i++) {
             System.out.println("Inserisci il valore del nodo: ");
             int valore = Integer.parseInt(scanner.nextLine());
-            nodoBinSearch.populate(nodoBinSearch, valore);
+            
+            if (radice == null) {
+                radice = new BST();
+                radice.setValore(valore);
+            } else {
+                radice = calcoli.populate(radice, valore);
+            }
         }
-
-        printVerticale(nodoBinSearch, "");
+        printVerticale(radice, "");
     }
 
-    public static void printVerticale(NodoBinSearch nodo, String prefisso) {
+    public static void printVerticale(BST nodo, String prefisso) {
         if (nodo == null) return;
 
         printVerticale(nodo.getDestra(), prefisso + "    ");

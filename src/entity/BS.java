@@ -2,13 +2,13 @@ package entity;
 
 import java.util.Scanner;
 
-public class NodoBin extends Nodo<NodoBin> {
+public class BS extends Nodo<BS> {
 
-    public NodoBin(int valore) {
+    public BS(int valore) {
         super(valore);
     }
 
-    public void populate(NodoBin nodo, Scanner scanner){
+    public void populate(BS nodo, Scanner scanner){
         if (nodo == null){
             System.out.println("caso base");
             return;
@@ -21,14 +21,14 @@ public class NodoBin extends Nodo<NodoBin> {
         System.out.println("Vuoi inserire alla Sinistra di " + nodo.getValore() + "? (s/n)");
         String risposta = scanner.nextLine();
         if (risposta.equals("s")){
-            nodo.setSinistro(new NodoBin(0));
+            nodo.setSinistro(new BS(0));
             populate(nodo.getSinistro(), scanner);
         }
 
         System.out.println("Vuoi inserire alla Destra di " + nodo.getValore() + "? (s/n)");
         risposta = scanner.nextLine();
         if (risposta.equals("s")){
-            nodo.setDestra(new NodoBin(0));
+            nodo.setDestra(new BS(0));
             populate(nodo.getDestra(), scanner);
         }
 

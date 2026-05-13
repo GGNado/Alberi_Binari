@@ -6,4 +6,6 @@ public interface HelperNodi<T extends Nodo<T>> {
     int contaFoglie(T nodo);
     int esisteCammino(T nodo, int k);
     int bil(T nodo);
+    Nodo<T> populate(T nodo, int valore);
+
 }

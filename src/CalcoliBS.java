@@ -1,10 +1,11 @@
 import entity.HelperNodi;
-import entity.NodoBin;
+import entity.Nodo;
+import entity.BS;
 
-public class CalcoliNodi implements HelperNodi<NodoBin> {
+public class CalcoliBS implements HelperNodi<BS> {
 
     @Override
-    public int sommaNodi(NodoBin nodo) {
+    public int sommaNodi(BS nodo) {
         if (nodo == null) {
             return 0;
         }
@@ -17,7 +18,7 @@ public class CalcoliNodi implements HelperNodi<NodoBin> {
     }
 
     @Override
-    public int contaNodi(NodoBin nodo) {
+    public int contaNodi(BS nodo) {
         if (nodo == null) {
             return 0;
         }
@@ -25,7 +26,7 @@ public class CalcoliNodi implements HelperNodi<NodoBin> {
     }
 
     @Override
-    public int contaFoglie(NodoBin nodo) {
+    public int contaFoglie(BS nodo) {
         if (nodo == null){
             return 0;
         }
@@ -38,7 +39,7 @@ public class CalcoliNodi implements HelperNodi<NodoBin> {
     }
 
     @Override
-    public int esisteCammino(NodoBin nodo, int k) {
+    public int esisteCammino(BS nodo, int k) {
         if (k == 0) {
             return 0;
         }
@@ -61,7 +62,7 @@ public class CalcoliNodi implements HelperNodi<NodoBin> {
     }
 
     @Override
-    public int bil(NodoBin nodo) {
+    public int bil(BS nodo) {
         if (nodo == null) return 0;
 
         if (nodo.getSinistro() == null && nodo.getDestra() == null)
@@ -74,5 +75,10 @@ public class CalcoliNodi implements HelperNodi<NodoBin> {
         if (sx != dx) return -1;
 
         return sx + dx;
+    }
+
+    @Override
+    public Nodo<BS> populate(BS nodo, int valore) {
+        return null;
     }
 }

@@ -1,10 +1,10 @@
-import entity.NodoBin;
+import entity.BS;
 
-public class MainNodoBin {
+public class MainBS {
 
     public static void main(String[] args) {
-        CalcoliNodi calcoli = new CalcoliNodi();
-        NodoBin root = inizializzaAlberoBase();
+        CalcoliBS calcoli = new CalcoliBS();
+        BS root = inizializzaAlberoBase();
         printVerticale(root, "");
         System.out.println(calcoli.sommaNodi(root));
         System.out.println(calcoli.contaNodi(root));
@@ -13,18 +13,18 @@ public class MainNodoBin {
         System.out.println(calcoli.bil(root));
     }
 
-    private static NodoBin inizializzaAlberoBase() {
-        NodoBin n6 = new NodoBin(6);
-        NodoBin n73 = new NodoBin(73);
-        NodoBin n2 = new NodoBin(2);
-        NodoBin n8 = new NodoBin(8);
-        NodoBin n5 = new NodoBin(5);
-        NodoBin n15 = new NodoBin(15);
-        NodoBin n7 = new NodoBin(7);
-        NodoBin n2_ = new NodoBin(2);
-        NodoBin n5_ = new NodoBin(5);
-        NodoBin n6__ = new NodoBin(6);
-        NodoBin n6___ = new NodoBin(6);
+    private static BS inizializzaAlberoBase() {
+        BS n6 = new BS(6);
+        BS n73 = new BS(73);
+        BS n2 = new BS(2);
+        BS n8 = new BS(8);
+        BS n5 = new BS(5);
+        BS n15 = new BS(15);
+        BS n7 = new BS(7);
+        BS n2_ = new BS(2);
+        BS n5_ = new BS(5);
+        BS n6__ = new BS(6);
+        BS n6___ = new BS(6);
 
         n6.setSinistro(n73);
         n6.setDestra(n15);
@@ -44,7 +44,7 @@ public class MainNodoBin {
         return n6;
     }
 
-    public static void printVerticale(NodoBin nodo, String prefisso) {
+    public static void printVerticale(BS nodo, String prefisso) {
         if (nodo == null) return;
 
         printVerticale(nodo.getDestra(), prefisso + "    ");
