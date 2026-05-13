@@ -1,19 +1,11 @@
-import lombok.Getter;
-import lombok.Setter;
+package entity;
 
 import java.util.Scanner;
 
-@Getter
-@Setter
-public class NodoBin {
-    private int valore;
-    private NodoBin sinistro;
-    private NodoBin destra;
+public class NodoBin extends Nodo<NodoBin> {
 
     public NodoBin(int valore) {
-        this.valore = valore;
-        this.sinistro = null;
-        this.destra = null;
+        super(valore);
     }
 
     public void populate(NodoBin nodo, Scanner scanner){
@@ -41,27 +33,6 @@ public class NodoBin {
         }
 
         System.out.println("Finito di inserire sia sinistra che destra di " + nodo.getValore());
-
-    }
-
-    public void printVerticale(NodoBin nodo, String prefisso){
-        if (nodo == null){
-            return;
-        }
-
-        if (nodo.getDestra() == null){
-            System.out.println("\t---" + nodo.getValore());
-        } else {
-            printVerticale(nodo.getDestra(), prefisso + "\t");
-            System.out.println(prefisso + "|");
-            System.out.println(prefisso + nodo.getValore());
-            System.out.println(prefisso + "|");
-        }
-
-        if (nodo.getSinistro() != null){
-            printVerticale(nodo.getSinistro(), prefisso + "\t");
-        }
-
 
     }
 }
