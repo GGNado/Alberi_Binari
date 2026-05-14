@@ -1,7 +1,7 @@
 <div align="center">
   <h1>🌲 Alberi Algoritmici 🌲</h1>
   <p><i>Un'esplorazione teorica e pratica sulle strutture dati ad albero</i></p>
-  
+
   <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java">
   <img src="https://img.shields.io/badge/OOP-SOLID_Principles-4CAF50?style=for-the-badge" alt="OOP">
   <img src="https://img.shields.io/badge/Data_Structures-Trees-007EC6?style=for-the-badge" alt="Data Structures">
@@ -16,8 +16,8 @@
 ## 📑 Indice
 1. [🏛️ Architettura N-Tier](#-architettura-n-tier)
 2. [🧭 Teoria degli Attraversamenti](#-teoria-degli-attraversamenti)
-   - [Ricerca in Profondità (DFS)](#-depth-first-search-dfs)
-   - [Ricerca in Ampiezza (BFS)](#-breadth-first-search-bfs)
+    - [Ricerca in Profondità (DFS)](#-depth-first-search-dfs)
+    - [Ricerca in Ampiezza (BFS)](#-breadth-first-search-bfs)
 3. [🗺️ Mappa Strutturale (UML)](#-mappa-strutturale-uml)
 
 ---
@@ -52,10 +52,10 @@ Il nodo viene elaborato **prima** di scendere nei suoi rami. Usato quando un'ope
 @Override
 public int contaNodi(BS nodo) {
     if (nodo == null) return 0;
-    
+
     // 1. VISITA (conto me stesso)
-    int self = 1; 
-    
+    int self = 1;
+
     // 2 & 3. ESPLORA (scendo a sx e dx)
     return self + contaNodi(nodo.getSinistro()) + contaNodi(nodo.getDestra());
 }
@@ -71,11 +71,11 @@ L'approccio *Bottom-Up*. Un nodo viene valutato **solo dopo** che l'intero sotto
 ```java
 public int altezza(BST nodo) {
     if (nodo == null) return 0;
-    
+
     // 1 & 2. ESPLORA (vado in profondità fino alle foglie)
     int altezzaSX = altezza(nodo.getSinistro());
     int altezzaDX = altezza(nodo.getDestra());
-    
+
     // 3. VISITA (ora che ho i dati, stabilisco la mia altezza)
     return Math.max(altezzaSX, altezzaDX) + 1;
 }
@@ -96,15 +96,15 @@ A differenza della DFS, la **BFS** si espande "a macchia d'olio" livello per liv
 ```java
 public static void printBFS(Nodo<?> nodo) {
     if (nodo == null) return;
-    
+
     Queue<Nodo<?>> queue = new LinkedList<>();
     queue.add(nodo); // Inserisco la Radice iniziale
 
     while (!queue.isEmpty()) {
         // FIFO: Estrae il nodo più vecchio, garantendo la lettura per livelli
-        Nodo<?> current = queue.poll(); 
+        Nodo<?> current = queue.poll();
         System.out.println(current.getValore());
-        
+
         // Accoda i figli per i cicli futuri (il livello successivo)
         if (current.getSinistro() != null) queue.add(current.getSinistro());
         if (current.getDestra() != null) queue.add(current.getDestra());
@@ -122,8 +122,7 @@ L'architettura vista dall'alto, con le interfacce Strategy al centro e un design
 ```mermaid
 classDiagram
     direction TB
-    
-    %% Stili personalizzati
+
     classDef interface fill:#e1f5fe,stroke:#0288d1,stroke-width:2px,color:#01579b
     classDef entity fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#e65100
     classDef service fill:#e8f5e9,stroke:#388e3c,stroke-width:2px,color:#1b5e20
@@ -136,21 +135,21 @@ classDiagram
         +esisteCammino(T, k)
         +bil(T)
     }
-    
+
     class BinaryTreeOperations~T~ {
         <<interface>>
         +populate(T, int) T
     }
 
     TreeOperations <|-- BinaryTreeOperations : extends
-    
+
     class Nodo~T~ {
         <<abstract>>
         #int valore
         #T sinistro
         #T destra
     }
-    
+
     class NT {
         -int valore
         -List~NT~ figli
@@ -159,27 +158,30 @@ classDiagram
     class CalcoliBS
     class CalcoliBST
     class CalcoliNT
-    
+
     BinaryTreeOperations <|.. CalcoliBS
     BinaryTreeOperations <|.. CalcoliBST
     TreeOperations <|.. CalcoliNT
 
     CalcoliBS --> Nodo : esegue DFS su
     CalcoliNT --> NT : elabora
-    
+
     class TreePrinter {
         <<Utility>>
         +printVerticale(Nodo)$
         +printBFS(Nodo)$
     }
-    
+
     TreePrinter ..> Nodo : usa Queue/Stack
 
-    %% Applica gli stili
-    class TreeOperations~T~, BinaryTreeOperations~T~ interface
-    class Nodo~T~, NT entity
-    class CalcoliBS, CalcoliBST, CalcoliNT service
-    class TreePrinter util
+    class TreeOperations:::interface
+    class BinaryTreeOperations:::interface
+    class Nodo:::entity
+    class NT:::entity
+    class CalcoliBS:::service
+    class CalcoliBST:::service
+    class CalcoliNT:::service
+    class TreePrinter:::util
 ```
 
 <br>
