@@ -123,7 +123,7 @@ L'architettura vista dall'alto, con le interfacce Strategy al centro e un design
 classDiagram
     direction TB
     
-    %% Stili personalizzati per la leggibilità e l'impatto visivo
+    %% Stili personalizzati
     classDef interface fill:#e1f5fe,stroke:#0288d1,stroke-width:2px,color:#01579b
     classDef entity fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#e65100
     classDef service fill:#e8f5e9,stroke:#388e3c,stroke-width:2px,color:#1b5e20
@@ -135,12 +135,12 @@ classDiagram
         +contaNodi(T)
         +esisteCammino(T, k)
         +bil(T)
-    }:::interface
+    }
     
     class BinaryTreeOperations~T~ {
         <<interface>>
         +populate(T, int) T
-    }:::interface
+    }
 
     TreeOperations <|-- BinaryTreeOperations : extends
     
@@ -149,16 +149,16 @@ classDiagram
         #int valore
         #T sinistro
         #T destra
-    }:::entity
+    }
     
     class NT {
         -int valore
         -List~NT~ figli
-    }:::entity
+    }
 
-    class CalcoliBS:::service
-    class CalcoliBST:::service
-    class CalcoliNT:::service
+    class CalcoliBS
+    class CalcoliBST
+    class CalcoliNT
     
     BinaryTreeOperations <|.. CalcoliBS
     BinaryTreeOperations <|.. CalcoliBST
@@ -171,9 +171,15 @@ classDiagram
         <<Utility>>
         +printVerticale(Nodo)$
         +printBFS(Nodo)$
-    }:::util
+    }
     
     TreePrinter ..> Nodo : usa Queue/Stack
+
+    %% Applica gli stili
+    class TreeOperations~T~, BinaryTreeOperations~T~ interface
+    class Nodo~T~, NT entity
+    class CalcoliBS, CalcoliBST, CalcoliNT service
+    class TreePrinter util
 ```
 
 <br>
