@@ -52,6 +52,22 @@ public class CalcoliBST implements BinaryTreeOperations<BST> {
         return autoBil(nodo, valore);
     }
 
+    public int isBinario(BST nodo) {
+        return checkBST(nodo, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    private int checkBST(BST nodo, int min, int max) {
+        if (nodo == null) return 0;
+
+        int val = nodo.getValore();
+        if (val <= min || val >= max) return -1;
+
+        int sx = checkBST(nodo.getSinistro(), min, val);
+        int dx = checkBST(nodo.getDestra(), val, max);
+
+        return Math.min(sx, dx);
+    }
+
     public int altezza(BST nodo) {
         if (nodo == null) return 0;
 

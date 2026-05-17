@@ -12,7 +12,7 @@ public class MainBST {
         BST radice = null;
         CalcoliBST calcoli = new CalcoliBST();
         
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 7; i++) {
             System.out.println("Inserisci il valore del nodo: ");
             int valore = Integer.parseInt(scanner.nextLine());
             
@@ -26,5 +26,6 @@ public class MainBST {
         TreePrinter.printVerticale(radice, "");
         System.out.println("Stampa in ampiezza:");
         TreePrinter.printBFS(radice);
+        System.out.println(calcoli.isBinario(radice));
     }
 }
